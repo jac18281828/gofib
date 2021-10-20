@@ -12,16 +12,13 @@ WORKDIR /workspaces/${PROJECT}
 ENV GOPATH=/go
 ENV GOBIN=/go/bin
 ENV GO111MODULE=on
-#RUN go get -v golang.org/x/tools/gopls@v0.7.2
-#RUN go get -v github.com/go-delve/delve/cmd/dlv@v1.7.2
-#RUN ln -f /go/bin/dlv /go/bin/dlv-dap
-#RUN go install github.com/cweill/gotests/gotests
-#RUN go install github.com/go-delve/delve/cmd/dlv
-#RUN go install github.com/go-delve/delve/cmd/dlv@master
-#RUN go install golang.org/x/tools/gopls
-
+RUN go get -v golang.org/x/tools/gopls@v0.7.2
+RUN go get -v github.com/go-delve/delve/cmd/dlv
+RUN go get -v github.com/go-delve/delve/cmd/dlv@v1.7.2
+RUN go get -v github.com/cweill/gotests/gotests
+COPY fibonacci fibonacci/
 COPY gofib.go .
-RUN go mod init gofib
+RUN go mod init github.com/jac18281828/gofib
 RUN go build
 
 WORKDIR /workspaces/${PROJECT}
