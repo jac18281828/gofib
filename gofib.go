@@ -17,18 +17,34 @@ func main() {
 		end, err2 := strconv.Atoi(arg2str)
 		if err1 == nil && err2 == nil {
 			var wg sync.WaitGroup
-			wg.Add(end - start)
-			calc := fibonacci.NewPrecompute(500)
-			for n := start; n < end; n++ {
-				go func(n int) {
-					fn := calc.Fib(n)
-					if fn.ProbablyPrime(2) {
-						fmt.Println("GoFIB ProbablePrime n =", n, fn.Text(10))
-					}
-					wg.Done()
-				}(n)
+			const NTHREAD = 12
+			calc := fibonacci.NewPrecompute(10000)
+			for n := start; n < end; {
+				group_count := NTHREAD
+				if group_count > end-n {
+					group_count = end - n
+				}
+				wg.Add(group_count)
+				for i := 0; i < group_count; i++ {
+					go func(n int) {
+						fn := calc.Fib(n)
+						if fn.ProbablyPrime(8) {
+							text := fn.Text(10)
+							if len(text) < 1000 {
+								fmt.Println("GoFIB ProbablePrime n =", n, fn.Text(10))
+							} else {
+								fmt.Println("GoFIB ProbablePrime n =", n, len(text), "digits")
+							}
+						}
+						wg.Done()
+					}(n + i)
+				}
+				wg.Wait()
+				n += group_count
+				if n%100000 == 0 {
+					fmt.Println("Trying", n)
+				}
 			}
-			wg.Wait()
 		} else {
 			if err1 != nil {
 				fmt.Println(arg1str, "not a number")
