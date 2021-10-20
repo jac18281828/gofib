@@ -22,4 +22,4 @@ RUN go mod init github.com/jac18281828/gofib
 RUN go build
 
 WORKDIR /workspaces/${PROJECT}
-CMD ./gofib 10000000
+CMD ./gofib 10 30

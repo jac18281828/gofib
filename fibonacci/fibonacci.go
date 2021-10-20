@@ -17,14 +17,40 @@ func (calc Calculator) Fib(n int) *big.Int {
 	return n0
 }
 
-func NewCalc() Fibonacci {
+func NewPrecompute(size int) Fibonacci {
 	calc := new(Calculator)
 	calc.fibn = make(map[int]*big.Int)
-	for i := 0; i < 5000; i++ {
+	for i := 0; i < size; i++ {
 		ni, _ := fib(i)
 		calc.fibn[i] = ni
 	}
 	return calc
+}
+
+func NewCalc() Fibonacci {
+	calc := new(Calculator)
+	calc.fibn = make(map[int]*big.Int)
+	return calc
+}
+
+func fast_doubler(n int, a *big.Int, b *big.Int) (*big.Int, *big.Int) {
+	var cx big.Int
+	cx.Mul(b, big.NewInt(2))
+	var b2a big.Int
+	b2a.Sub(&cx, a)
+	cx.Mul(a, &b2a)
+	var bsq big.Int
+	bsq.Mul(b, b)
+	var asq big.Int
+	asq.Mul(a, a)
+	var d big.Int
+	d.Add(&asq, &bsq)
+	if n%2 == 0 {
+		return &cx, &d
+	} else {
+		cx.Add(&cx, &d)
+		return &d, &cx
+	}
 }
 
 func fib_fast(n int, fibn map[int]*big.Int) (*big.Int, *big.Int) {
@@ -35,28 +61,10 @@ func fib_fast(n int, fibn map[int]*big.Int) (*big.Int, *big.Int) {
 		n0, n1 := big.NewInt(0), big.NewInt(1)
 		return n0, n1
 	} else {
-		a, b := fib_fast(n / 2, fibn)
-		var b2 big.Int
-		b2.Mul(b, big.NewInt(2))
-		var b2a big.Int
-		b2a.Sub(&b2, a)
-		var c big.Int
-		c.Mul(a, &b2a)
-		var bsq big.Int
-		bsq.Mul(b, b)
-		var asq big.Int
-		asq.Mul(a, a)
-		var d big.Int
-		d.Add(&asq, &bsq)
-		if n%2 == 0 {
-			return &c, &d
-		} else {
-			c.Add(&c, &d)
-			return &d, &c
-		}
+		a, b := fib_fast(n/2, fibn)
+		return fast_doubler(n, a, b)
 	}
 }
-
 
 func fib(n int) (*big.Int, *big.Int) {
 	if n == 0 {
@@ -64,23 +72,6 @@ func fib(n int) (*big.Int, *big.Int) {
 		return n0, n1
 	} else {
 		a, b := fib(n / 2)
-		var b2 big.Int
-		b2.Mul(b, big.NewInt(2))
-		var b2a big.Int
-		b2a.Sub(&b2, a)
-		var c big.Int
-		c.Mul(a, &b2a)
-		var bsq big.Int
-		bsq.Mul(b, b)
-		var asq big.Int
-		asq.Mul(a, a)
-		var d big.Int
-		d.Add(&asq, &bsq)
-		if n%2 == 0 {
-			return &c, &d
-		} else {
-			c.Add(&c, &d)
-			return &d, &c
-		}
+		return fast_doubler(n, a, b)
 	}
 }
