@@ -25,4 +25,4 @@ RUN go mod init gofib
 RUN go build
 
 WORKDIR /workspaces/${PROJECT}
-CMD ./gofib
+CMD ./gofib 10000000

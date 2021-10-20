@@ -5,15 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Sheep",
+      "name": "Go Fib",
       "type": "go",
       "request": "launch",
       "mode": "debug",
-      "program": "${workspaceRoot}/src/example/countsheep.go",
+      "program": "${workspaceRoot}/gofib.go",
       "env":{
         "GO111MODULE": "on"
       },
-      "args":[],
+      "args":["10000"],
       "showLog":true,
       "debugAdapter": "legacy",
     },
