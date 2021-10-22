@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-docker build . -t go:1 && docker run --rm -i -t go:1
+VERSION=$(date +%s)
+
+docker build . -t gofib:${VERSION} && \
+	docker run --rm -i -t gofib:${VERSION}
