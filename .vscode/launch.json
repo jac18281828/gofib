@@ -13,7 +13,7 @@
       "env":{
         "GO111MODULE": "on"
       },
-      "args":["10", "100"],
+      "args":["10000", "20000"],
       "showLog":true,
       "debugAdapter": "legacy",
     },
