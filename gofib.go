@@ -49,13 +49,13 @@ func min(x1 int, x2 int) int {
 }
 
 func checkRange(start int, end int) {
-	const NTHREAD = 100
+	const NGO = 100
 	const RABINROUNDS = 8
 	const DECIMAL = 10
 	const MAX_LEN = 5000
 	calc := fibonacci.NewPrecompute(1000)
 	for n := start; n < end; {
-		group_count := min(NTHREAD, end-n)
+		group_count := min(NGO, end-n)
 		var wg sync.WaitGroup
 		wg.Add(group_count)
 		for i := 0; i < group_count; i++ {
