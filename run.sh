@@ -2,5 +2,7 @@
 
 VERSION=$(date +%m%d%y)
 
-docker build . -t gofib:${VERSION} && \
-	docker run --rm -i -t gofib:${VERSION}
+PROJECT=jac18281828/gofib
+
+docker build . -t ${PROJECT}:${VERSION} && \
+	docker run --rm -i -t ${PROJECT}:${VERSION}
