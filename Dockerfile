@@ -1,5 +1,4 @@
-ARG VERSION=latest
-FROM jac18281828/godev:${VERSION} 
+FROM jac18281828/godev:latest
 
 ARG PROJECT=gofib
 WORKDIR /workspaces/${PROJECT}
