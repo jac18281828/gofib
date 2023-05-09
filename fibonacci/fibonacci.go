@@ -1,7 +1,7 @@
 package fibonacci
 
 import (
-    "math/big"
+	"math/big"
 )
 
 type Fibonacci interface {
@@ -13,7 +13,7 @@ type Calculator struct {
 }
 
 func (calc Calculator) Fib(n int) *big.Int {
-    n0, _ := fib_fast(n, calc.fibn)
+    n0, _ := FibFast(n, calc.fibn)
     return n0
 }
 
@@ -21,7 +21,7 @@ func NewPrecompute(size int) Fibonacci {
     calc := new(Calculator)
     calc.fibn = make(map[int]*big.Int)
     for i := 0; i < size; i++ {
-        ni, _ := fib(i)
+        ni, _ := Fib(i)
         calc.fibn[i] = ni
     }
     return calc
@@ -33,7 +33,7 @@ func NewCalc() Fibonacci {
     return calc
 }
 
-func fast_doubler(n int, a *big.Int, b *big.Int) (*big.Int, *big.Int) {
+func FastDoubler(n int, a *big.Int, b *big.Int) (*big.Int, *big.Int) {
     var cx big.Int
     cx.Mul(b, big.NewInt(2))
     var b2a big.Int
@@ -53,7 +53,7 @@ func fast_doubler(n int, a *big.Int, b *big.Int) (*big.Int, *big.Int) {
     }
 }
 
-func fib_fast(n int, fibn map[int]*big.Int) (*big.Int, *big.Int) {
+func FibFast(n int, fibn map[int]*big.Int) (*big.Int, *big.Int) {
     value, containsKey := fibn[n+1]
     if containsKey {
         return fibn[n], value
@@ -61,17 +61,17 @@ func fib_fast(n int, fibn map[int]*big.Int) (*big.Int, *big.Int) {
         n0, n1 := big.NewInt(0), big.NewInt(1)
         return n0, n1
     } else {
-        a, b := fib_fast(n/2, fibn)
-        return fast_doubler(n, a, b)
+        a, b := FibFast(n/2, fibn)
+        return FastDoubler(n, a, b)
     }
 }
 
-func fib(n int) (*big.Int, *big.Int) {
+func Fib(n int) (*big.Int, *big.Int) {
     if n == 0 {
         n0, n1 := big.NewInt(0), big.NewInt(1)
         return n0, n1
     } else {
-        a, b := fib(n / 2)
-        return fast_doubler(n, a, b)
+        a, b := Fib(n / 2)
+        return FastDoubler(n, a, b)
     }
 }

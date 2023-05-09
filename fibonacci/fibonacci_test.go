@@ -1,9 +1,9 @@
 package fibonacci
 
 import (
-    "math/big"
-    "reflect"
-    "testing"
+	"math/big"
+	"reflect"
+	"testing"
 )
 
 func TestCalculator_Fib(t *testing.T) {
@@ -105,7 +105,7 @@ func Test_fib_fast(t *testing.T) {
     }
     for _, tt := range tests {
         t.Run(tt.name, func(t *testing.T) {
-            got, got1 := fib_fast(tt.args.n, tt.args.fibn)
+            got, got1 := FibFast(tt.args.n, tt.args.fibn)
             if !reflect.DeepEqual(got, tt.want) {
                 t.Errorf("fib_fast() got = %v, want %v", got, tt.want)
             }
@@ -147,7 +147,7 @@ func Test_fib(t *testing.T) {
     }
     for _, tt := range tests {
         t.Run(tt.name, func(t *testing.T) {
-            got, got1 := fib(tt.args.n)
+            got, got1 := Fib(tt.args.n)
             if !reflect.DeepEqual(got, tt.want) {
                 t.Errorf("fib() got = %v, want %v", got, tt.want)
             }
