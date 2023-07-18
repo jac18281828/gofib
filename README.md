@@ -16,7 +16,10 @@ Records:
 | F(50M) | 27.119s | Go! (Intel amd64) | 10,449,403 |
 | F(60M) | 27.646s | Go! (Apple arm64) | 12,539,280 |
 | F(80M) | 27.592s | Go! (Apple arm64) | 16,719,032 |
-| F(100M) | 39.590s | Go! (Apple arm64) | 20,898,786 |
-| F(200M) | 1m56.757s | Go! (Apple arm64) | 41,797,550 |
+| F(100M) | 39.590s | Go! (Apple m1 max arm64) | 20,898,786 |
+| F(100M) | 37.880s | Go! (Apple m2 max arm64) | 20,898,786 |
+| F(200M) | 1m56.757s | Go! (Apple m1 max arm64) | 41,797,550 |
+| F(200M) | 1m49.757s | Go! (Apple m2 max arm64) | 41,797,550 |
+| F(300M) | 3m25.590s | Go! (Apple m2 max arm64) | 62,696,314 |
 
 
