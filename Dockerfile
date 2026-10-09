@@ -5,9 +5,9 @@ WORKDIR /workspaces/${PROJECT}
 ENV GOMAXPROCS=10
 COPY fibonacci fibonacci/
 COPY gofib.go .
-RUN chown -R jac.jac .
-USER jac
+RUN chown -R godev:godev .
+USER godev
 RUN go mod init github.com/jac18281828/gofib
 RUN go build
 RUN go test ./...
-CMD ./gofib 100 2000
+CMD ./gofib 100
