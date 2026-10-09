@@ -19,11 +19,11 @@ Records:
 | F(100M) | 39.590s | Go! (Apple M1 Max) | 20,898,786 |
 | F(100M) | 37.880s | Go! (Apple M2 Max) | 20,898,786 |
 | F(100M) | 23.828s | Go! (Apple M3 Max) | 20,898,786 |
-| F(100M) | 25.265s | Go! (Apple M5 Max) | 20,898,786 |
+| F(100M) | 20.382s | Go! (Apple M5 Max) | 20,898,786 |
 | F(200M) | 1m56.757s | Go! (Apple M1 Max) | 41,797,550 |
 | F(200M) | 1m49.757s | Go! (Apple M2 Max) | 41,797,550 |
 | F(200M) | 1m9.664s | Go! (Apple M3 Max) | 41,797,550 |
-| F(200M) | 1m14.216s | Go! (Apple M5 Max) | 41,797,550 |
+| F(200M) | 1m8.452s | Go! (Apple M5 Max) | 41,797,550 |
 | F(300M) | 3m25.590s | Go! (Apple M2 Max) | 62,696,314 |
 | F(300M) | 2m9.151s | Go! (Apple M3 Max) | 62,696,314 |
-| F(300M) | 2m19.422s | Go! (Apple M5 Max) | 62,696,314 |
+| F(300M) | 1m50.778s | Go! (Apple M5 Max) | 62,696,314 |
